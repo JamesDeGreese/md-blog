@@ -1,0 +1,16 @@
+.main-content {
+    background-image: url('/img/main_bg.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.header-link {
+    color: white !important;
+    text-decoration: none;
+}
+
+.post-container {
+    background: #fff;
+    padding: 2rem;
+}
