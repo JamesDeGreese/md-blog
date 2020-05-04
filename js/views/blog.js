@@ -1,5 +1,3 @@
-import posts from '/data/blog/list.js'
-
 export default {
     template:
         '<v-row justify="center">' +
@@ -26,31 +24,37 @@ export default {
                 '</v-container>' +
             '</v-col>' +
         '</v-row>',
-    data: function () {
+    data() {
         return {
-            posts: posts,
+            posts: [],
             page: 1,
             perPage: 6,
         }
     },
     methods: {
-        paginate (posts) {
+        paginate(posts) {
             let page = this.page;
             let perPage = this.perPage;
             let from = (page * perPage) - perPage;
             let to = (page * perPage);
             return  posts.slice(from, to);
         },
-        getUrl (slug) {
+        getUrl(slug) {
             return '/blog/' + slug
         }
     },
     computed: {
-        displayedPosts () {
+        displayedPosts() {
             return this.paginate(this.posts);
         },
-        totalPages () {
+        totalPages() {
             return Math.ceil(this.posts.length / this.perPage)
         }
     },
+    mounted() {
+        fetch('/data/blog/list.json')
+            .then(response => response.json())
+            .then(data => this.posts = data)
+    }
+
 }
