@@ -1,14 +1,15 @@
 export default {
     template:
-        '<v-row justify="center">' +
+        '<v-row justify="start" wrap>' +
             '<v-col :cols="12">' +
                 '<h1 class="display-2 white--text">Blog</h1>' +
             '</v-col>' +
-            '<v-col v-for="(post, index) in displayedPosts" :key="index" :cols="4">' +
-                '<v-card max-width="344" class="mx-auto">' +
+            '<v-col v-for="(post, index) in displayedPosts" :key="index" xs="12" sm="6" md="4" xl="2" >' +
+                '<v-card class="mx-auto">' +
                     '<v-list-item>' +
                         '<v-list-item-content>' +
                             '<v-list-item-title class="headline">{{ post.title }}</v-list-item-title>' +
+                            '<v-list-item-subtitle>{{ post.published_at }}</v-list-item-subtitle>' +
                         '</v-list-item-content>' +
                     '</v-list-item>' +
                     '<v-img :src="post.image" height="194"></v-img>' +
@@ -20,7 +21,7 @@ export default {
             '</v-col>' +
             '<v-col v-if="totalPages > 1" :cols="12">' +
                 '<v-container class="max-width">' +
-                    '<v-pagination v-model="page" :length="totalPages" circle></v-pagination>' +
+                    '<v-pagination v-model="page" :length="totalPages" color="light-green"></v-pagination>' +
                 '</v-container>' +
             '</v-col>' +
         '</v-row>',
@@ -54,7 +55,7 @@ export default {
     mounted() {
         fetch('/data/blog/list.json')
             .then(response => response.json())
-            .then(data => this.posts = data)
+            .then(data => this.posts = data.reverse())
     }
 
 }

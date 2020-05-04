@@ -1,7 +1,7 @@
 export default {
     template: '<div class="post-container">' +
             '<div v-html="parsedMD"></div>' +
-            '<v-btn to="/blog" text>Back</v-btn>' +
+            '<v-btn to="/blog" text class="mt-5">Back</v-btn>' +
         '</div>'
     ,
     data() {
